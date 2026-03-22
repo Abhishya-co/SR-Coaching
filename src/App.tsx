@@ -72,9 +72,14 @@ const Navbar = () => {
                 {link.name}
               </a>
             ))}
-            <button className="bg-brand-red text-white px-6 py-2.5 rounded-full text-sm font-semibold hover:bg-red-600 transition-all shadow-lg shadow-red-500/20">
+            <a 
+              href="https://wa.me/919818478036?text=Hello%20Shree%20Ram%20Coaching%2C%20I%20am%20interested%20in%20enrolling%20for%20coaching%20classes.%20Please%20provide%20more%20information."
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-brand-red text-white px-6 py-2.5 rounded-full text-sm font-semibold hover:bg-red-600 transition-all shadow-lg shadow-red-500/20"
+            >
               Enroll Now
-            </button>
+            </a>
           </div>
 
           {/* Mobile Toggle */}
@@ -112,9 +117,14 @@ const Navbar = () => {
                 </a>
               ))}
               <div className="pt-4">
-                <button className="w-full bg-brand-red text-white px-6 py-3 rounded-xl font-semibold">
+                <a 
+                  href="https://wa.me/919818478036?text=Hello%20Shree%20Ram%20Coaching%2C%20I%20am%20interested%20in%20enrolling%20for%20coaching%20classes.%20Please%20provide%20more%20information."
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-full bg-brand-red text-white px-6 py-3 rounded-xl font-semibold inline-block text-center"
+                >
                   Enroll Now
-                </button>
+                </a>
               </div>
             </div>
           </motion.div>
@@ -135,7 +145,10 @@ const Hero = () => {
           className="w-full h-full object-cover"
           referrerPolicy="no-referrer"
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-brand-dark/90 via-brand-dark/70 to-transparent"></div>
+        <div className="absolute inset-0 bg-gradient-to-r from-brand-dark/95 via-brand-dark/80 to-transparent"></div>
+        
+        {/* Decorative Grid Pattern */}
+        <div className="absolute inset-0 opacity-10" style={{ backgroundImage: 'radial-gradient(circle, #fff 1px, transparent 1px)', backgroundSize: '40px 40px' }}></div>
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
@@ -157,9 +170,14 @@ const Hero = () => {
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4 mb-8 md:mb-12">
-              <button className="bg-brand-red text-white px-6 md:px-8 py-3.5 md:py-4 rounded-xl font-bold text-base md:text-lg hover:bg-red-600 transition-all flex items-center justify-center gap-2 group shadow-xl shadow-red-500/30">
+              <a 
+                href="https://wa.me/919818478036?text=Hello%20Shree%20Ram%20Coaching%2C%20I%20am%20interested%20in%20enrolling%20for%20coaching%20classes.%20Please%20provide%20more%20information."
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bg-brand-red text-white px-6 md:px-8 py-3.5 md:py-4 rounded-xl font-bold text-base md:text-lg hover:bg-red-600 transition-all flex items-center justify-center gap-2 group shadow-xl shadow-red-500/30"
+              >
                 Enroll Now <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-              </button>
+              </a>
               <button className="bg-white/10 backdrop-blur-md text-white border border-white/20 px-6 md:px-8 py-3.5 md:py-4 rounded-xl font-bold text-base md:text-lg hover:bg-white/20 transition-all flex items-center justify-center gap-2">
                 Book Demo Class
               </button>
@@ -194,8 +212,17 @@ const Hero = () => {
 
 const About = () => {
   return (
-    <section id="about" className="py-24 bg-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="about" className="py-24 bg-gray-50/50 relative overflow-hidden">
+      {/* Decorative Background Elements */}
+      <div className="absolute top-0 left-0 w-64 h-64 bg-brand-red/5 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2"></div>
+      <div className="absolute bottom-0 right-0 w-96 h-96 bg-brand-red/5 rounded-full blur-3xl translate-x-1/3 translate-y-1/3"></div>
+      
+      {/* Background Watermark Text */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-[20rem] font-black text-brand-red/5 pointer-events-none select-none hidden lg:block">
+        SHREE RAM
+      </div>
+      
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="grid md:grid-cols-2 gap-16 items-center">
           <motion.div 
             initial={{ opacity: 0, x: -20 }}
@@ -203,7 +230,16 @@ const About = () => {
             viewport={{ once: true }}
             className="relative mb-12 md:mb-0"
           >
-            <div className="aspect-video md:aspect-square rounded-3xl overflow-hidden shadow-2xl">
+            {/* Decorative Dots Pattern */}
+            <div className="absolute -top-6 -left-6 w-32 h-32 opacity-20 hidden lg:block">
+              <div className="grid grid-cols-6 gap-2">
+                {[...Array(36)].map((_, i) => (
+                  <div key={i} className="w-1 h-1 bg-brand-red rounded-full"></div>
+                ))}
+              </div>
+            </div>
+            
+            <div className="aspect-video md:aspect-square rounded-3xl overflow-hidden shadow-2xl relative z-10 border-8 border-white">
               <img 
                 src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&q=80&w=800" 
                 alt="Classroom" 
@@ -211,7 +247,7 @@ const About = () => {
                 referrerPolicy="no-referrer"
               />
             </div>
-            <div className="absolute -bottom-8 -right-8 bg-brand-red text-white p-8 rounded-3xl shadow-xl hidden lg:block">
+            <div className="absolute -bottom-8 -right-8 bg-brand-red text-white p-8 rounded-3xl shadow-xl hidden lg:block z-20">
               <p className="text-4xl font-bold mb-1">15+</p>
               <p className="text-sm font-medium opacity-90">Years of Academic<br />Excellence</p>
             </div>
@@ -302,8 +338,12 @@ const Courses = () => {
   ];
 
   return (
-    <section id="courses" className="py-24 bg-gray-50">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="courses" className="py-24 bg-gray-50 relative overflow-hidden">
+      {/* Decorative Background */}
+      <div className="absolute top-0 right-0 w-1/3 h-full bg-brand-red/5 skew-x-12 translate-x-1/2"></div>
+      <div className="absolute bottom-0 left-0 w-64 h-64 border-4 border-brand-red/10 rounded-full -translate-x-1/2 translate-y-1/2"></div>
+      
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="text-center max-w-3xl mx-auto mb-16">
           <h2 className="text-brand-red font-bold tracking-wider uppercase text-sm mb-4">Our Programs</h2>
           <h3 className="text-4xl font-bold text-brand-dark mb-6">Explore Our Specialized Streams</h3>
@@ -363,8 +403,12 @@ const WhyChooseUs = () => {
   ];
 
   return (
-    <section className="py-24 bg-white overflow-hidden">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="py-24 bg-white overflow-hidden relative">
+      {/* Decorative Background */}
+      <div className="absolute top-1/2 left-0 w-full h-1/2 bg-gray-50 -z-0"></div>
+      <div className="absolute top-20 right-20 w-32 h-32 bg-brand-red/5 rounded-full blur-2xl"></div>
+      
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           <motion.div
             initial={{ opacity: 0, x: -20 }}
@@ -803,7 +847,7 @@ const Footer = () => {
 const WhatsAppButton = () => {
   return (
     <a 
-      href="https://wa.me/919818478036" 
+      href="https://wa.me/919818478036?text=Hello%20Shree%20Ram%20Coaching%2C%20I%20am%20interested%20in%20enrolling%20for%20coaching%20classes.%20Please%20provide%20more%20information." 
       target="_blank" 
       rel="noopener noreferrer"
       className="fixed bottom-8 right-8 z-50 bg-[#25D366] text-white p-4 rounded-full shadow-2xl hover:scale-110 transition-transform flex items-center justify-center group"
@@ -837,9 +881,14 @@ export default function App() {
           </div>
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
             <h3 className="text-3xl md:text-5xl font-bold text-white mb-8">Join the Best Coaching in Noida Today</h3>
-            <button className="bg-white text-brand-red px-10 py-4 rounded-xl font-bold text-xl hover:bg-gray-100 transition-all shadow-2xl">
+            <a 
+              href="https://wa.me/919818478036?text=Hello%20Shree%20Ram%20Coaching%2C%20I%20am%20interested%20in%20enrolling%20for%20coaching%20classes.%20Please%20provide%20more%20information."
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-white text-brand-red px-10 py-4 rounded-xl font-bold text-xl hover:bg-gray-100 transition-all shadow-2xl inline-block"
+            >
               Register Now
-            </button>
+            </a>
           </div>
         </section>
 
