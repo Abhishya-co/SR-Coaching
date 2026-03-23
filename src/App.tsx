@@ -42,22 +42,22 @@ const Navbar = ({ onBookDemo }: { onBookDemo: () => void }) => {
   }, []);
 
   const navLinks = [
-    { name: 'Home', href: '#' },
-    { name: 'Courses', href: '#courses' },
-    { name: 'Success', href: '#success' },
-    { name: 'Faculty', href: '#faculty' },
-    { name: 'FAQ', href: '#faq' },
+    { name: 'Home', href: '#', icon: Home },
+    { name: 'Courses', href: '#courses', icon: BookOpen },
+    { name: 'Success', href: '#success', icon: Trophy },
+    { name: 'Faculty', href: '#faculty', icon: Users },
+    { name: 'FAQ', href: '#faq', icon: MessageSquare },
   ];
 
   return (
-    <nav className={`fixed top-0 w-full z-50 transition-all duration-300 ${isScrolled ? 'glass-nav py-3' : 'bg-transparent py-5'}`}>
+    <nav className={`fixed top-0 w-full z-[1000] transition-all duration-300 ${isScrolled || isMobileMenuOpen ? 'bg-white shadow-md py-2' : 'bg-transparent py-4'}`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center">
-          <div className="flex items-center gap-2">
-            <div className="bg-brand-red p-2 rounded-lg">
-              <GraduationCap className="text-white w-6 h-6" />
+          <div className="flex items-center gap-2 relative z-[1100]">
+            <div className="bg-brand-red p-1.5 md:p-2 rounded-lg">
+              <GraduationCap className="text-white w-5 h-5 md:w-6 md:h-6" />
             </div>
-            <span className={`text-xl font-bold tracking-tight ${isScrolled ? 'text-brand-dark' : 'text-white'}`}>
+            <span className={`text-sm md:text-xl font-bold tracking-tight ${isScrolled || isMobileMenuOpen ? 'text-brand-dark' : 'text-white'}`}>
               Shree Ram <span className="text-brand-red">Coaching</span>
             </span>
           </div>
@@ -89,58 +89,101 @@ const Navbar = ({ onBookDemo }: { onBookDemo: () => void }) => {
             </a>
           </div>
 
-          {/* Mobile Toggle */}
-          <button 
-            className="md:hidden p-2"
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-          >
-            {isMobileMenuOpen ? (
-              <X className={isScrolled ? 'text-brand-dark' : 'text-white'} />
-            ) : (
-              <Menu className={isScrolled ? 'text-brand-dark' : 'text-white'} />
-            )}
-          </button>
+          {/* Mobile Actions */}
+          <div className="flex md:hidden items-center gap-2 relative z-[1100]">
+            <a 
+              href="https://wa.me/919818478036?text=Hello%20Shree%20Ram%20Coaching%2C%20I%20am%20interested%20in%20enrolling%20for%20coaching%20classes.%20Please%20provide%20more%20information."
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-brand-red text-white px-3 py-2 rounded-xl text-xs font-bold shadow-lg shadow-red-500/20"
+            >
+              Enroll
+            </a>
+            <a 
+              href="tel:+919818478036"
+              className="bg-gray-100 text-brand-dark p-2 rounded-xl border border-gray-200"
+            >
+              <Phone size={18} />
+            </a>
+            <button 
+              type="button"
+              className="p-1"
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              aria-label="Toggle menu"
+            >
+              {isMobileMenuOpen ? (
+                <X className="text-brand-dark" size={30} />
+              ) : (
+                <Menu className={isScrolled ? 'text-brand-dark' : 'text-white'} size={30} />
+              )}
+            </button>
+          </div>
         </div>
       </div>
 
-      {/* Mobile Menu */}
+      {/* Mobile Menu Overlay */}
       <AnimatePresence>
         {isMobileMenuOpen && (
           <motion.div 
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: 'auto' }}
-            exit={{ opacity: 0, height: 0 }}
-            className="md:hidden bg-white border-b border-gray-100 overflow-hidden"
+            initial={{ opacity: 0, x: '100%' }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: '100%' }}
+            transition={{ type: 'spring', damping: 25, stiffness: 200 }}
+            className="fixed inset-0 bg-white z-[1050] md:hidden flex flex-col"
           >
-            <div className="px-4 pt-2 pb-6 space-y-1">
-              {navLinks.map((link) => (
-                <a
-                  key={link.name}
-                  href={link.href}
-                  className="block px-3 py-4 text-base font-medium text-gray-700 hover:text-brand-red hover:bg-gray-50 rounded-md"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                >
-                  {link.name}
-                </a>
-              ))}
-              <div className="pt-4 space-y-3">
+            <div className="flex-1 overflow-y-auto px-6 pt-24 pb-10">
+              <div className="flex flex-col gap-6">
+                {navLinks.map((link) => (
+                  <a
+                    key={link.name}
+                    href={link.href}
+                    className="text-2xl font-bold text-brand-dark hover:text-brand-red transition-colors flex items-center gap-4"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                  >
+                    <div className="bg-gray-50 p-2 rounded-xl">
+                      <link.icon className="w-6 h-6 text-brand-red" />
+                    </div>
+                    {link.name}
+                  </a>
+                ))}
+              </div>
+              
+              <div className="mt-12 space-y-4">
                 <button 
                   onClick={() => {
                     onBookDemo();
                     setIsMobileMenuOpen(false);
                   }}
-                  className="w-full border-2 border-brand-red text-brand-red px-6 py-3 rounded-xl font-bold text-center"
+                  className="w-full bg-gray-50 text-brand-dark border-2 border-gray-100 px-6 py-4 rounded-2xl font-bold text-lg flex items-center justify-center gap-2"
                 >
-                  Book Demo Class
+                  Book Demo Class <ArrowRight className="w-5 h-5" />
                 </button>
                 <a 
                   href="https://wa.me/919818478036?text=Hello%20Shree%20Ram%20Coaching%2C%20I%20am%20interested%20in%20enrolling%20for%20coaching%20classes.%20Please%20provide%20more%20information."
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-full bg-brand-red text-white px-6 py-3 rounded-xl font-semibold inline-block text-center"
+                  className="w-full bg-brand-red text-white px-6 py-4 rounded-2xl font-bold text-lg flex items-center justify-center gap-2 shadow-xl shadow-red-500/20"
                 >
-                  Enroll Now
+                  Enroll Now <GraduationCap className="w-5 h-5" />
                 </a>
+              </div>
+
+              <div className="mt-12 pt-8 border-t border-gray-100">
+                <p className="text-sm text-gray-500 font-medium mb-4 uppercase tracking-wider">Contact Us</p>
+                <div className="space-y-4">
+                  <a href="tel:+919818478036" className="flex items-center gap-3 text-gray-700">
+                    <div className="bg-gray-100 p-2 rounded-lg">
+                      <Phone className="w-5 h-5 text-brand-red" />
+                    </div>
+                    <span className="font-semibold">+91 98184 78036</span>
+                  </a>
+                  <a href="mailto:info@shreeramcoaching.com" className="flex items-center gap-3 text-gray-700">
+                    <div className="bg-gray-100 p-2 rounded-lg">
+                      <Mail className="w-5 h-5 text-brand-red" />
+                    </div>
+                    <span className="font-semibold">info@shreeramcoaching.com</span>
+                  </a>
+                </div>
               </div>
             </div>
           </motion.div>
@@ -152,7 +195,7 @@ const Navbar = ({ onBookDemo }: { onBookDemo: () => void }) => {
 
 const Hero = ({ onBookDemo }: { onBookDemo: () => void }) => {
   return (
-    <section className="relative min-h-[60vh] md:min-h-screen flex items-center pt-20 md:pt-32 pb-10 md:pb-12 overflow-hidden">
+    <section className="relative min-h-[60vh] md:min-h-screen flex items-center pt-28 md:pt-32 pb-10 md:pb-12 overflow-hidden">
       {/* Background Image with Overlay */}
       <div className="absolute inset-0 z-0">
         <img 
@@ -168,12 +211,12 @@ const Hero = ({ onBookDemo }: { onBookDemo: () => void }) => {
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
-        <div className="flex flex-col items-center text-center gap-12">
+        <div className="flex flex-col items-start md:items-center text-left md:text-center gap-12">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="max-w-4xl mx-auto"
+            className="max-w-4xl md:mx-auto"
           >
             <span className="inline-block bg-brand-red/20 text-brand-red border border-brand-red/30 px-4 py-1.5 rounded-full text-xs md:text-sm font-bold mb-4 md:mb-6 backdrop-blur-sm">
               Admissions Open 2026-27
@@ -182,11 +225,11 @@ const Hero = ({ onBookDemo }: { onBookDemo: () => void }) => {
               Empowering Minds, <br />
               <span className="text-brand-red">Shaping Futures.</span>
             </h1>
-            <p className="text-lg md:text-xl text-gray-300 mb-6 md:mb-8 max-w-xl mx-auto leading-relaxed">
+            <p className="text-lg md:text-xl text-gray-300 mb-6 md:mb-8 max-w-xl md:mx-auto leading-relaxed">
               Premium coaching for Class 6th to 12th. Excellence in CBSE, ICSE, State Boards & NIOS with a result-oriented approach.
             </p>
             
-            <div className="flex flex-col sm:flex-row gap-4 mb-8 md:mb-12 justify-center">
+            <div className="flex flex-col sm:flex-row gap-4 mb-8 md:mb-12 justify-start md:justify-center">
               <a 
                 href="https://wa.me/919818478036?text=Hello%20Shree%20Ram%20Coaching%2C%20I%20am%20interested%20in%20enrolling%20for%20coaching%20classes.%20Please%20provide%20more%20information."
                 target="_blank"
@@ -203,7 +246,7 @@ const Hero = ({ onBookDemo }: { onBookDemo: () => void }) => {
               </button>
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 md:gap-6 pt-6 md:pt-8 border-t border-white/10 justify-items-center">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 md:gap-6 pt-6 md:pt-8 border-t border-white/10 w-full justify-items-start sm:justify-items-center">
               <div className="flex items-center gap-3">
                 <div className="bg-brand-red/20 p-2 rounded-lg">
                   <Users className="text-brand-red w-5 h-5" />
@@ -225,10 +268,10 @@ const Hero = ({ onBookDemo }: { onBookDemo: () => void }) => {
             </div>
           </motion.div>
 
-          <div className="relative w-full max-w-lg mx-auto">
+          <div className="relative w-full max-w-lg md:mx-auto">
             <div className="absolute -inset-4 bg-brand-red/20 blur-3xl rounded-full"></div>
             <div className="relative">
-              <div className="text-center mb-3">
+              <div className="text-left md:text-center mb-3">
                 <h3 className="text-lg font-bold text-white">Register Now</h3>
               </div>
               <RegistrationForm />
@@ -1112,7 +1155,7 @@ const WhatsAppButton = () => {
       href="https://wa.me/919818478036?text=Hello%20Shree%20Ram%20Coaching%2C%20I%20am%20interested%20in%20enrolling%20for%20coaching%20classes.%20Please%20provide%20more%20information." 
       target="_blank" 
       rel="noopener noreferrer"
-      className="fixed bottom-8 right-8 z-50 bg-[#25D366] text-white p-4 rounded-full shadow-2xl hover:scale-110 transition-transform flex items-center justify-center group"
+      className="fixed bottom-8 right-8 z-[500] bg-[#25D366] text-white p-4 rounded-full shadow-2xl hover:scale-110 transition-transform flex items-center justify-center group"
     >
       <MessageSquare className="w-6 h-6" />
       <span className="max-w-0 overflow-hidden group-hover:max-w-xs group-hover:ml-2 transition-all duration-300 font-bold whitespace-nowrap">
@@ -1126,7 +1169,7 @@ const TermsModal = ({ isOpen, onClose }: { isOpen: boolean, onClose: () => void 
   return (
     <AnimatePresence>
       {isOpen && (
-        <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
+        <div className="fixed inset-0 z-[2000] flex items-center justify-center p-4">
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -1436,7 +1479,7 @@ Please confirm the timing.`;
   return (
     <AnimatePresence>
       {isOpen && (
-        <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
+        <div className="fixed inset-0 z-[2000] flex items-center justify-center p-4">
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -1605,7 +1648,7 @@ Please let me know the availability and fees.`;
   return (
     <AnimatePresence>
       {isOpen && (
-        <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
+        <div className="fixed inset-0 z-[2000] flex items-center justify-center p-4">
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
