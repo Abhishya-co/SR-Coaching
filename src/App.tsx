@@ -25,7 +25,8 @@ import {
   Star,
   Clock,
   Home,
-  Download
+  Download,
+  Loader2
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 
@@ -63,19 +64,19 @@ const Navbar = ({ onBookDemo }: { onBookDemo: () => void }) => {
           </div>
 
           {/* Desktop Nav */}
-          <div className="hidden md:flex items-center gap-8">
+          <div className="hidden md:flex items-center gap-3 lg:gap-6 xl:gap-8">
             {navLinks.map((link) => (
               <a 
                 key={link.name} 
                 href={link.href}
-                className={`text-sm font-medium transition-colors hover:text-brand-red ${isScrolled ? 'text-gray-700' : 'text-white/90'}`}
+                className={`text-xs lg:text-sm font-medium transition-colors hover:text-brand-red ${isScrolled ? 'text-gray-700' : 'text-white/90'}`}
               >
                 {link.name}
               </a>
             ))}
             <button 
               onClick={onBookDemo}
-              className={`text-sm font-bold px-5 py-2 rounded-full border transition-all ${isScrolled ? 'border-brand-red text-brand-red hover:bg-brand-red hover:text-white' : 'border-white/30 text-white hover:bg-white/10'}`}
+              className={`text-xs lg:text-sm font-bold px-3 lg:px-4 py-2 rounded-full border transition-all ${isScrolled ? 'border-brand-red text-brand-red hover:bg-brand-red hover:text-white' : 'border-white/30 text-white hover:bg-white/10'}`}
             >
               Book Demo
             </button>
@@ -83,7 +84,7 @@ const Navbar = ({ onBookDemo }: { onBookDemo: () => void }) => {
               href="https://wa.me/919818478036?text=Hello%20Shree%20Ram%20Coaching%2C%20I%20am%20interested%20in%20enrolling%20for%20coaching%20classes.%20Please%20provide%20more%20information."
               target="_blank"
               rel="noopener noreferrer"
-              className="bg-brand-red text-white px-6 py-2.5 rounded-full text-sm font-semibold hover:bg-red-600 transition-all shadow-lg shadow-red-500/20"
+              className="bg-brand-red text-white px-4 lg:px-5 py-2.5 rounded-full text-xs lg:text-sm font-semibold hover:bg-red-600 transition-all shadow-lg shadow-red-500/20"
             >
               Enroll Now
             </a>
@@ -132,16 +133,16 @@ const Navbar = ({ onBookDemo }: { onBookDemo: () => void }) => {
             className="fixed inset-0 bg-white z-[1050] md:hidden flex flex-col"
           >
             <div className="flex-1 overflow-y-auto px-6 pt-24 pb-10">
-              <div className="flex flex-col gap-6">
+              <div className="flex flex-col gap-4">
                 {navLinks.map((link) => (
                   <a
                     key={link.name}
                     href={link.href}
-                    className="text-2xl font-bold text-brand-dark hover:text-brand-red transition-colors flex items-center gap-4"
+                    className="text-lg font-bold text-brand-dark hover:text-brand-red transition-colors flex items-center gap-3"
                     onClick={() => setIsMobileMenuOpen(false)}
                   >
-                    <div className="bg-gray-50 p-2 rounded-xl">
-                      <link.icon className="w-6 h-6 text-brand-red" />
+                    <div className="bg-gray-50 p-1.5 rounded-lg">
+                      <link.icon className="w-4 h-4 text-brand-red" />
                     </div>
                     {link.name}
                   </a>
@@ -177,11 +178,11 @@ const Navbar = ({ onBookDemo }: { onBookDemo: () => void }) => {
                     </div>
                     <span className="font-semibold">+91 98184 78036</span>
                   </a>
-                  <a href="mailto:info@shreeramcoaching.com" className="flex items-center gap-3 text-gray-700">
+                  <a href="mailto:kdilips505@gmail.com" className="flex items-center gap-3 text-gray-700">
                     <div className="bg-gray-100 p-2 rounded-lg">
                       <Mail className="w-5 h-5 text-brand-red" />
                     </div>
-                    <span className="font-semibold">info@shreeramcoaching.com</span>
+                    <span className="font-semibold">kdilips505@gmail.com</span>
                   </a>
                 </div>
               </div>
@@ -365,12 +366,10 @@ const About = () => {
                 Learn More About Us <ChevronRight className="w-5 h-5" />
               </button>
               <a 
-                href="#" 
+                href="https://drive.google.com/file/d/1XmUJiHe5y_YcmiJqGsGj-Jf7BRpzFxT8/view?usp=drivesdk" 
+                target="_blank"
+                rel="noopener noreferrer"
                 className="bg-brand-red/10 text-brand-red px-6 py-2 rounded-xl font-bold flex items-center gap-2 hover:bg-brand-red hover:text-white transition-all"
-                onClick={(e) => {
-                  e.preventDefault();
-                  alert("Brochure download will start soon. (Please replace this with your actual PDF link)");
-                }}
               >
                 <Download className="w-5 h-5" /> Download Brochure
               </a>
@@ -648,10 +647,10 @@ const WhyChooseUs = () => {
 
 const Results = () => {
   const toppers = [
-    { name: "Rahul Sharma", class: "Class 12", marks: "Physics: 98, Math: 96", img: "https://i.pravatar.cc/150?u=rahul" },
-    { name: "Priya Singh", class: "Class 10", marks: "Science: 95, Math: 98", img: "https://i.pravatar.cc/150?u=priya" },
-    { name: "Amit Kumar", class: "Class 12", marks: "Accounts: 97, Eco: 94", img: "https://i.pravatar.cc/150?u=amit" },
-    { name: "Sneha Gupta", class: "Class 10", marks: "English: 96, SST: 94", img: "https://i.pravatar.cc/150?u=sneha" }
+    { name: "Deepak Kumar", class: "Class 12 (Roll: 2245340530)", marks: "Phy: 92, Math: 93", img: "https://i.ibb.co/JWjjmr4g/97695fb64dcc.jpg" },
+    { name: "Hennah", class: "Class 12th (Roll: 2245340833)", marks: "Phy: 97, Chem: 92", img: "https://i.ibb.co/8wmcVkL/image.jpg" },
+    { name: "Deshraj", class: "Class 12 (Roll: 2255367688)", marks: "Phy: 82, Bio: 95", img: "https://i.ibb.co/hr0k56x/image.jpg" },
+    { name: "Abhishek", class: "Class 12 (Roll: 2255354594)", marks: "Phy: 82, Chem: 82", img: "https://i.ibb.co/mrhk85PV/image.jpg" }
   ];
 
   return (
@@ -673,7 +672,7 @@ const Results = () => {
             <div className="flex flex-col md:flex-row items-center gap-10 relative z-10">
               <div className="w-48 h-48 rounded-3xl overflow-hidden shadow-2xl border-4 border-brand-red/30 flex-shrink-0">
                 <img 
-                  src="https://academic-amaranth-qktx7wmtta.edgeone.app/WhatsApp%20Image%202026-03-23%20at%2010.41.06%20PM.jpeg" 
+                  src="https://i.ibb.co/wN95hz4Z/97695fb64dcc.jpg" 
                   alt="Dilip Kumar" 
                   className="w-full h-full object-cover transition-all duration-700"
                   referrerPolicy="no-referrer"
@@ -808,30 +807,27 @@ const SuccessStories = () => {
 
 const Faculty = () => {
   const teachers = [
-    { name: "Dilip Kumar", subject: "Math & Science", exp: "15+ Years", img: "https://academic-amaranth-qktx7wmtta.edgeone.app/WhatsApp%20Image%202026-03-23%20at%2010.41.06%20PM.jpeg", role: "Head of Coaching" },
-    { name: "Mr. R.K. Sharma", subject: "Mathematics", exp: "12+ Years", img: "https://i.pravatar.cc/150?u=rk" },
-    { name: "Ms. Anjali Verma", subject: "Physics", exp: "8+ Years", img: "https://i.pravatar.cc/150?u=anjali" },
-    { name: "Mr. Vikram Singh", subject: "Chemistry", exp: "10+ Years", img: "https://i.pravatar.cc/150?u=vikram" }
+    { name: "Dilip Kumar", subject: "Math & Science", exp: "15+ Years", img: "https://i.ibb.co/wN95hz4Z/97695fb64dcc.jpg", role: "Head of Coaching" }
   ];
 
   return (
-    <section id="faculty" className="py-12 md:py-24 bg-white">
+    <section id="faculty" className="py-4 md:py-6 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <h2 className="text-brand-red font-bold tracking-wider uppercase text-sm mb-4">Expert Faculty</h2>
+        <div className="text-center mb-4">
+          <h2 className="text-brand-red font-bold tracking-wider uppercase text-sm mb-1">Expert Faculty</h2>
           <h3 className="text-4xl font-bold text-brand-dark">Learn from the Best</h3>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
+        <div className="flex justify-center max-w-6xl mx-auto">
           {teachers.map((t, idx) => (
             <motion.div 
               key={idx}
               initial={{ opacity: 0, scale: 0.95 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
-              className="group max-w-[280px] mx-auto w-full"
+              className="group max-w-[320px] w-full"
             >
-              <div className="aspect-square rounded-2xl overflow-hidden mb-6 relative shadow-md">
+              <div className="aspect-square rounded-2xl overflow-hidden mb-2 relative shadow-md">
                 <img src={t.img} alt={t.name} className="w-full h-full object-cover transition-all duration-500" referrerPolicy="no-referrer" />
                 <div className="absolute inset-0 bg-gradient-to-t from-brand-dark/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-6">
                   <div className="text-white">
@@ -1015,7 +1011,7 @@ const Contact = () => {
           
           <div className="grid md:grid-cols-3 gap-8 mb-16">
             <a 
-              href="https://share.google/lDyx4yW3i95xx7arH" 
+              href="https://maps.app.goo.gl/oeVY1kTskQriY3ar9" 
               target="_blank" 
               rel="noopener noreferrer" 
               className="flex flex-col items-center text-center p-8 bg-gray-50 rounded-3xl hover:bg-red-50 transition-colors group"
@@ -1040,7 +1036,7 @@ const Contact = () => {
                 <Mail className="text-brand-red w-7 h-7 group-hover:text-white transition-colors" />
               </div>
               <h4 className="font-bold text-lg mb-2">Email Us</h4>
-              <p className="text-gray-600 text-sm">info@shreeramcoaching.com</p>
+              <p className="text-gray-600 text-sm">kdilips505@gmail.com</p>
             </div>
           </div>
 
@@ -1058,7 +1054,7 @@ const Contact = () => {
             </div>
             <div className="text-center">
               <a 
-                href="https://share.google/lDyx4yW3i95xx7arH" 
+                href="https://maps.app.goo.gl/oeVY1kTskQriY3ar9" 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 text-brand-red font-bold hover:underline"
@@ -1074,6 +1070,37 @@ const Contact = () => {
 };
 
 const Footer = () => {
+  const [email, setEmail] = useState("");
+  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+  const [message, setMessage] = useState("");
+
+  const handleSubscribe = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!email) return;
+
+    setStatus("loading");
+    try {
+      const response = await fetch("/api/newsletter/subscribe", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email }),
+      });
+
+      const data = await response.json();
+      if (response.ok) {
+        setStatus("success");
+        setMessage(data.message);
+        setEmail("");
+      } else {
+        setStatus("error");
+        setMessage(data.error || "Something went wrong");
+      }
+    } catch (error) {
+      setStatus("error");
+      setMessage("Failed to connect to server");
+    }
+  };
+
   return (
     <footer className="bg-brand-dark text-white pt-12 pb-8">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -1091,12 +1118,10 @@ const Footer = () => {
               Leading coaching institute in Noida providing quality education and foundation building for students from Class 6th to 12th.
             </p>
             <a 
-              href="#" 
+              href="https://drive.google.com/file/d/1XmUJiHe5y_YcmiJqGsGj-Jf7BRpzFxT8/view?usp=drivesdk" 
+              target="_blank"
+              rel="noopener noreferrer"
               className="inline-flex items-center gap-2 bg-white/10 text-white px-5 py-2 rounded-xl font-bold text-sm hover:bg-brand-red transition-all border border-white/10"
-              onClick={(e) => {
-                e.preventDefault();
-                alert("Brochure download will start soon. (Please replace this with your actual PDF link)");
-              }}
             >
               <Download className="w-4 h-4" /> Download Brochure
             </a>
@@ -1128,12 +1153,27 @@ const Footer = () => {
           <div>
             <h4 className="font-bold text-base mb-4">Newsletter</h4>
             <p className="text-gray-400 mb-4 text-sm">Subscribe to get latest updates and study tips.</p>
-            <div className="flex gap-2">
-              <input type="email" placeholder="Email address" className="bg-white/5 border border-white/10 rounded-xl px-4 py-2 text-xs outline-none focus:border-brand-red transition-all flex-grow" />
-              <button className="bg-brand-red p-2 rounded-xl hover:bg-red-600 transition-all">
-                <ArrowRight className="w-4 h-4" />
-              </button>
-            </div>
+            <form onSubmit={handleSubscribe} className="space-y-2">
+              <div className="flex gap-2">
+                <input 
+                  type="email" 
+                  placeholder="Email address" 
+                  required
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  className="bg-white/5 border border-white/10 rounded-xl px-4 py-2 text-xs outline-none focus:border-brand-red transition-all flex-grow" 
+                />
+                <button 
+                  type="submit"
+                  disabled={status === "loading"}
+                  className="bg-brand-red p-2 rounded-xl hover:bg-red-600 transition-all disabled:opacity-50"
+                >
+                  {status === "loading" ? <Loader2 className="w-4 h-4 animate-spin" /> : <ArrowRight className="w-4 h-4" />}
+                </button>
+              </div>
+              {status === "success" && <p className="text-[10px] text-green-400">{message}</p>}
+              {status === "error" && <p className="text-[10px] text-red-400">{message}</p>}
+            </form>
           </div>
         </div>
 
@@ -1766,9 +1806,101 @@ Please let me know the availability and fees.`;
   );
 };
 
+const VerificationPage = ({ token }: { token: string }) => {
+  const [status, setStatus] = useState<"loading" | "success" | "error">("loading");
+  const [message, setMessage] = useState("");
+
+  useEffect(() => {
+    const verify = async () => {
+      try {
+        const response = await fetch(`/api/newsletter/verify/${token}`);
+        const data = await response.json();
+        if (response.ok) {
+          setStatus("success");
+          setMessage(data.message);
+        } else {
+          setStatus("error");
+          setMessage(data.error || "Verification failed");
+        }
+      } catch (error) {
+        setStatus("error");
+        setMessage("Failed to connect to server");
+      }
+    };
+    verify();
+  }, [token]);
+
+  return (
+    <div className="min-h-screen bg-gray-50 flex items-center justify-center p-4">
+      <motion.div 
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        className="bg-white p-8 rounded-[32px] shadow-2xl max-w-md w-full text-center"
+      >
+        <div className="bg-brand-red p-3 rounded-2xl inline-block mb-6">
+          <GraduationCap className="text-white w-8 h-8" />
+        </div>
+        
+        {status === "loading" && (
+          <div className="space-y-4">
+            <Loader2 className="w-12 h-12 text-brand-red animate-spin mx-auto" />
+            <h2 className="text-2xl font-bold text-brand-dark">Verifying Subscription...</h2>
+            <p className="text-gray-500">Please wait while we confirm your email.</p>
+          </div>
+        )}
+
+        {status === "success" && (
+          <div className="space-y-4">
+            <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+              <CheckCircle2 className="w-8 h-8 text-green-600" />
+            </div>
+            <h2 className="text-2xl font-bold text-brand-dark">Subscription Confirmed!</h2>
+            <p className="text-gray-500">{message}</p>
+            <button 
+              onClick={() => window.location.href = "/"}
+              className="w-full bg-brand-red text-white py-3 rounded-xl font-bold hover:bg-red-600 transition-all mt-6"
+            >
+              Go to Home
+            </button>
+          </div>
+        )}
+
+        {status === "error" && (
+          <div className="space-y-4">
+            <div className="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4">
+              <X className="w-8 h-8 text-red-600" />
+            </div>
+            <h2 className="text-2xl font-bold text-brand-dark">Verification Failed</h2>
+            <p className="text-gray-500">{message}</p>
+            <button 
+              onClick={() => window.location.href = "/"}
+              className="w-full bg-brand-dark text-white py-3 rounded-xl font-bold hover:bg-black transition-all mt-6"
+            >
+              Back to Home
+            </button>
+          </div>
+        )}
+      </motion.div>
+    </div>
+  );
+};
+
 export default function App() {
   const [isDemoModalOpen, setIsDemoModalOpen] = useState(false);
   const [isHomeTutorModalOpen, setIsHomeTutorModalOpen] = useState(false);
+  const [verificationToken, setVerificationToken] = useState<string | null>(null);
+
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const token = params.get("token");
+    if (token) {
+      setVerificationToken(token);
+    }
+  }, []);
+
+  if (verificationToken) {
+    return <VerificationPage token={verificationToken} />;
+  }
 
   return (
     <div className="relative">
